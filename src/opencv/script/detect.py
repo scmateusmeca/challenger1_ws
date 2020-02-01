@@ -106,7 +106,7 @@ class Camera:
       if(len(contours_poly[index]) > 10):
         # draw a circle in sphere and put a warning message
         cv2.circle(cv2_frame, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 0, 255), 5) 
-        cv2.putText(cv2_frame, 'BOMB HAS BEEN DETECTED!', (20, 130), font, 2, (0, 0, 255), 5)
+        cv2.putText(cv2_frame, 'Mission Complete!', (20, 130), font, 2, (0, 0, 255), 5)
         # controller actions
         linear_vel =  0 #self.linear_vel_control.calculate(1, 174, radius[0])
         angular_vel = self.angular_vel_control.calculate(1, 640, centers[0][0])
