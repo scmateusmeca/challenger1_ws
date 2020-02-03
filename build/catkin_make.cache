@@ -1,2 +1,0 @@
-acc:husky:navigation_2d/nav2d:navigation_2d/nav2d_exploration:navigation_2d/nav2d_karto:navigation_2d/nav2d_localizer:navigation_2d/nav2d_msgs:navigation_2d/nav2d_navigator:navigation_2d/nav2d_operator:navigation_2d/nav2d_remote:navigation_2d/nav2d_tutorials:open_all:opencv:pointcloud_to_laserscan:velodyne_simulator/velodyne_description:velodyne_simulator/velodyne_gazebo_plugins:velodyne_simulator/velodyne_simulator:world
--DCATKIN_DEVEL_PREFIX=/home/mateus/challenger1_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mateus/challenger1_ws/install -G Unix Makefiles

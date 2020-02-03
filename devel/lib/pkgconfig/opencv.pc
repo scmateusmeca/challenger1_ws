@@ -1,8 +1,0 @@
-prefix=/home/mateus/challenger1_ws/devel
-
-Name: opencv
-Description: Description of opencv
-Version: 0.0.0
-Cflags: -I/home/mateus/challenger1_ws/src/opencv/include
-Libs: -L${prefix}/lib 
-Requires: gazebo_plugins gazebo_ros roscpp
