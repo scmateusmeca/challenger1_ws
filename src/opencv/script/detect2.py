@@ -28,6 +28,11 @@ class Camera:
   timer_flag = None
   flag_kill = False
 
+  counter = 0
+  controller_flag = False
+  error_distance = 999
+  
+
   def __init__(self):
      # focal length
     self.focalLength = 937.8194580078125
@@ -59,7 +64,7 @@ class Camera:
     self.cancel_explore = rospy.Publisher("/Explore/cancel", GoalID, queue_size = 1)
     time.sleep(1)
     self.start_map.publish()
-    time.sleep(5)
+    time.sleep(10)
     self.cancel_map.publish()
     time.sleep(2)
     self.start_explore.publish()
@@ -104,7 +109,7 @@ class Camera:
       centers.append(aux1)
       radius.append(aux2)
       ## if the camera find the sphere ##
-      if(len(contours_poly[index]) > 12):
+      if(len(contours_poly[index]) > 6):
         # draw a circle in sphere and put a warning message
         cv2.circle(cv2_frame, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 0, 255), 5) 
         cv2.putText(cv2_frame, 'BOMB HAS BEEN DETECTED!', (20, 130), font, 2, (0, 0, 255), 5)
@@ -148,39 +153,60 @@ class Camera:
     self.velocity_publisher.publish(vel_msg)
   
   def goal_move_base(self, center_ball, radius):
-    distance = (1 * self.focalLength) / (radius * 2)
-    # if distance < 6.0:
-    #   self.flag_kill = True
+    # distance = (1 * self.focalLength) / (radius * 2)
+    # y_move_base = -(center_ball - self.camera_info.width/2) / (radius*2) 
+    # if abs(y_move_base) < 0.006:
+    #   x_move_base = distance
+    # else:
+    #   x_move_base = math.sqrt(distance**2 - y_move_base**2)
+    # self.msg_move_to_goal.pose.position.x = x_move_base
+    # self.msg_move_to_goal.pose.position.y = y_move_base
+    # self.msg_move_to_goal.pose.orientation.w = 1
+    # self.msg_move_to_goal.header.frame_id = self.camera_info.header.frame_id
+    # if self.flag:
     #   self.cancel_explore.publish()
     #   self.cancel_map.publish()
-    #   os.system("rostopic pub /move_base/cancel actionlib_msgs/GoalID -- {}")
-    #   tws = Twist()
-    #   tws.linear.x = 0.0
-    #   tws.angular.z = 0.0
-    #   self.velocity_publisher.publish(tws)
-    #   print('Esfera a 6.0 m de distancia maxima')
+    #   os.system("rosnode kill /Operator")
+    #   print('enviando goal')
+    #   self.pub_move_to_goal.publish(self.msg_move_to_goal)
+    #   self.flag = False
+    #   self.timer_flag = time.time()
+    # if time.time() - self.timer_flag > 10:
+    #   self.flag = True      
+    # print('distance to sphere: ' + str(distance))
+    # print('INCREMENTO X: ' + str(x_move_base))
+    # print('INCREMENTO Y: ' + str(y_move_base))      
+    distance = (1 * self.focalLength) / (radius * 2)
     y_move_base = -(center_ball - self.camera_info.width/2) / (radius*2) 
-    if abs(y_move_base) < 0.006:
-      x_move_base = distance
-    else:
-      x_move_base = math.sqrt(distance**2 - y_move_base**2)
+    x_move_base = math.sqrt(distance**2 - y_move_base**2)
+    self.distance_filtered = 0.6*self.distance_filtered + 0.4*distance
+    self.x_move_base_filtered = 0.6*self.x_move_base_filtered + 0.4*x_move_base
+    self.y_move_base_filtered = 0.6*self.y_move_base_filtered + 0.4*y_move_base
     self.msg_move_to_goal.pose.position.x = x_move_base
     self.msg_move_to_goal.pose.position.y = y_move_base
     self.msg_move_to_goal.pose.orientation.w = 1
-    self.msg_move_to_goal.header.frame_id = self.camera_info.header.frame_id
-    if self.flag:
-      self.cancel_explore.publish()
-      self.cancel_map.publish()
-      os.system("rosnode kill /Operator")
-      print('enviando goal')
+    self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
+    if self.flag and abs(distance- self.distance_filtered) < 7 and self.distance_filtered > 4:
       self.pub_move_to_goal.publish(self.msg_move_to_goal)
       self.flag = False
       self.timer_flag = time.time()
-    if time.time() - self.timer_flag > 10:
+    if time.time() - self.timer_flag > 5:
       self.flag = True      
-    print('distance to sphere: ' + str(distance))
-    print('INCREMENTO X: ' + str(x_move_base))
-    print('INCREMENTO Y: ' + str(y_move_base))      
+    if abs(distance- self.distance_filtered) < 1 and self.distance_filtered < 4:
+      self.cancel_move_base.publish()
+      self.controller_flag = True
+
+    print('Euclidean distance to goal: ' + str(distance))
+    print('Filtered euclidean distance to goal: ' + str(self.distance_filtered))
+    print('Error: ' + str(distance - self.distance_filtered))
+    print('X relative to '+ self.camera_info.header.frame_id + ': '  + str(x_move_base))
+    print('Filtered X relative to '+ self.camera_info.header.frame_id + ': '  + str(self.x_move_base_filtered))
+    print('Y relative to '+ self.camera_info.header.frame_id + ': '  + str(y_move_base))
+    print('Filtered Y relative to '+ self.camera_info.header.frame_id + ': '  + str(self.y_move_base_filtered))
+    self.counter += 1
+    self.error_distance = distance - self.distance_filtered
+    self.distance_controller = distance
+    print(str(self.counter))
 
   def pub_move_base(self, x, y):
     if self.mission_phase == None:
