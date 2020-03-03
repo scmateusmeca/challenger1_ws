@@ -59,7 +59,7 @@ void PointCloudToLaserScanNodelet::onInit()
 
   private_nh_.param<std::string>("target_frame", target_frame_, "");
   private_nh_.param<double>("transform_tolerance", tolerance_, 0.01);
-  private_nh_.param<double>("min_height", min_height_, -0.45);
+  private_nh_.param<double>("min_height", min_height_, std::numeric_limits<double>::min());
   private_nh_.param<double>("max_height", max_height_, std::numeric_limits<double>::max());
 
   private_nh_.param<double>("angle_min", angle_min_, -M_PI);

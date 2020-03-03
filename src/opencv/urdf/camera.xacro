@@ -6,15 +6,15 @@
         <camera name='__default__'>
          <horizontal_fov>1.047</horizontal_fov>
          <image>
-           <width>320</width>
-           <height>240</height>
+           <width>1280</width>
+           <height>720</height>
          </image>
          <clip>
            <near>0.1</near>
            <far>100</far>
          </clip>
        </camera>
-        <plugin name="light_sensor_plugin" filename="<path>/<workspaces_ros>/opencv/devel/lib/libgazebo_light_sensor_plugin.so">
+        <plugin name="light_sensor_plugin" filename="/home/mateus/diogo_ws/challenge-husky/devel/lib/libgazebo_light_sensor_plugin.so">
           <alwaysOn>true</alwaysOn>
           <updateRate>10</updateRate>
           <cameraName>diff/camera_top</cameraName>

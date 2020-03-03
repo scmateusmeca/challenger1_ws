@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <param name="use_sim_time" value="true"/>
+  <arg name="scan_topic" default="scan" />
+  
+  <!--- Run gmapping -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+    <rosparam file="$(find challenge_husky)/param/gmapping.yaml"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+
+
+<!--- Run Move Base -->
+  <include file="$(find challenge_husky)/launch/custom_move_base.launch"/>
+
+
+<!-- Run Nav2d -->
+  <rosparam file="$(find challenge_husky)/param/ros.yaml"/>
+
+  <node name="Operator" pkg="nav2d_operator" type="operator" >
+		<remap from="scan" to="scan"/>
+		<rosparam file="$(find challenge_husky)/param/operator.yaml"/>
+		<rosparam file="$(find challenge_husky)/param/costmap.yaml" ns="local_map" />
+        <remap from="cmd_vel" to="/cmd_vel_nav2d"/>
+	</node> 
+
+  <node name="Navigator" pkg="nav2d_navigator" type="navigator">
+		<rosparam file="$(find challenge_husky)/param/navigator.yaml"/>
+	</node>
+
+  <node name="GetMap" pkg="nav2d_navigator" type="get_map_client" />
+  <node name="Explore" pkg="nav2d_navigator" type="explore_client" />
+  <node name="SetGoal" pkg="nav2d_navigator" type="set_goal_client" /> 
+
+</launch>

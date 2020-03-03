@@ -1,4 +1,4 @@
- #!/usr/bin/env python2.7
+#!/usr/bin/env python2.7
 
 import rospy
 from sensor_msgs.msg import Image
@@ -39,7 +39,7 @@ class Camera:
       centers.append(aux1)
       radius.append(aux2)
       if(len(contours_poly[index]) > 10):
-        cv2.circle(img_rgb, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 255, 255), 2)
+        cv2.circle(img_rgb, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (255, 255, 0), 2)
 
     return img_rgb
 
