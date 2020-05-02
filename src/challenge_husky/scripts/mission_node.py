@@ -61,14 +61,14 @@ class Robot:
 
     time.sleep(1)
     self.start_map.publish()
-    time.sleep(5)
+    time.sleep(7)
     self.cancel_map.publish()
-    time.sleep(2)
-    self.msg_move_to_goal.pose.position.x = 0
-    self.msg_move_to_goal.pose.position.y = 0
-    self.msg_move_to_goal.pose.orientation.w = 1
-    self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
-    self.pub_move_to_goal.publish(self.msg_move_to_goal)
+    time.sleep(5)
+    #self.msg_move_to_goal.pose.position.x = 0
+    #self.msg_move_to_goal.pose.position.y = 0
+    #self.msg_move_to_goal.pose.orientation.w = 1
+    #self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id
+    #self.pub_move_to_goal.publish(self.msg_move_to_goal)
     self.start_explore.publish()
 
 
@@ -85,6 +85,9 @@ class Robot:
     # define range of yellow color
     yellowLower = (20, 100, 100)
     yellowUpper = (32, 255, 255)
+    # define range of red color
+    #redLower = (0, 0, 200)
+    #redUpper = (0, 0, 255)
 
     # hsv color-space convert
     hsv = cv2.cvtColor(cv2_frame, cv2.COLOR_BGR2HSV)
