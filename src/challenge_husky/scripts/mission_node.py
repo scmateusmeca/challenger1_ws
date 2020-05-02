@@ -64,7 +64,7 @@ class Robot:
     time.sleep(5)
     self.cancel_map.publish()
     time.sleep(2)
-    self.msg_move_to_goal.pose.position.x = 30
+    self.msg_move_to_goal.pose.position.x = 0
     self.msg_move_to_goal.pose.position.y = 0
     self.msg_move_to_goal.pose.orientation.w = 1
     self.msg_move_to_goal.header.frame_id = 'base_link'#self.camera_info.header.frame_id

@@ -7,7 +7,7 @@
   <arg name="urdf_extras" default="$(find challenge_husky)/urdf/attachments.urdf.xacro"/>
 
 <!-- Gazebo Final Map  -->
-  <include file="$(find bir_cimatec4_map)/launch/gazebo.launch">
+  <include file="$(find novo_mundo)/launch/gazebo.launch">
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
@@ -20,8 +20,8 @@
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
-    <arg name="x" default="45.0"/>
-    <arg name="y" default="5.0"/>
+    <arg name="x" default="-4.0"/>
+    <arg name="y" default="-18.0"/>
     <arg name="z" default="0.0"/>
     <arg name="yaw" default="3.1415"/>
   </include>

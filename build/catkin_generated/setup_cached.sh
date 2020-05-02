@@ -5,10 +5,6 @@
 # it emulates the modifications of the setup script without recurring computations
 
 # new environment variables
-export HUSKY_MAG_CONFIG="/opt/ros/melodic/share/husky_bringup/config/mag_config_default.yaml"
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/mateus/challenger1_ws/devel:$CMAKE_PREFIX_PATH"
 export PWD="/home/mateus/challenger1_ws/build"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/mateus/challenger1_ws/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/mateus/challenger1_ws/src:$ROS_PACKAGE_PATH"

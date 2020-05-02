@@ -1,0 +1,8 @@
+prefix=/home/mateus/challenger1_ws/devel
+
+Name: novo_mundo
+Description: Description of novo_mundo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

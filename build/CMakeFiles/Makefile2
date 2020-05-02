@@ -509,6 +509,24 @@ navigation_2d/nav2d_tutorials/preinstall:
 .PHONY : navigation_2d/nav2d_tutorials/preinstall
 
 #=============================================================================
+# Directory level rules for directory novo_mundo
+
+# Convenience name for "all" pass in the directory.
+novo_mundo/all:
+
+.PHONY : novo_mundo/all
+
+# Convenience name for "clean" pass in the directory.
+novo_mundo/clean:
+
+.PHONY : novo_mundo/clean
+
+# Convenience name for "preinstall" pass in the directory.
+novo_mundo/preinstall:
+
+.PHONY : novo_mundo/preinstall
+
+#=============================================================================
 # Directory level rules for directory velodyne_description
 
 # Convenience name for "all" pass in the directory.

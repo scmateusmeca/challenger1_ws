@@ -64,6 +64,13 @@
 /home/mateus/challenger1_ws/build/navigation_2d/nav2d_tutorials/CMakeFiles/install/local.dir
 /home/mateus/challenger1_ws/build/navigation_2d/nav2d_tutorials/CMakeFiles/rebuild_cache.dir
 /home/mateus/challenger1_ws/build/navigation_2d/nav2d_tutorials/CMakeFiles/install.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/install/strip.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/edit_cache.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/list_install_components.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/test.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/install/local.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/rebuild_cache.dir
+/home/mateus/challenger1_ws/build/novo_mundo/CMakeFiles/install.dir
 /home/mateus/challenger1_ws/build/velodyne_description/CMakeFiles/install/strip.dir
 /home/mateus/challenger1_ws/build/velodyne_description/CMakeFiles/edit_cache.dir
 /home/mateus/challenger1_ws/build/velodyne_description/CMakeFiles/list_install_components.dir
