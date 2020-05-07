@@ -3,6 +3,7 @@
 Find a red ball with an autonomous Husky.
 
 Install
+
 $ sudo apt install ros-melodic-husky-*
 
 $ sudo apt-get install libsdl-image1.2-dev
