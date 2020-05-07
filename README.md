@@ -2,7 +2,7 @@
 
 Find a red ball with an autonomous Husky.
 
-Install
+# Install
 
 $ sudo apt install ros-melodic-husky-*
 
@@ -10,7 +10,7 @@ $ sudo apt-get install libsdl-image1.2-dev
 
 $ sudo apt-get install libsdl-dev
 
-Run:
+# Run
 
 $ roslaunch challenge_husky open_all.launch
 
