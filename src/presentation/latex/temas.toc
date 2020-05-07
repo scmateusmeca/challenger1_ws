@@ -1,0 +1,3 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{Atividade de Recomposi\IeC {\c c}\IeC {\~a}o de Nota}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Desenvolvimento}{3}{0}{1}
