@@ -73,6 +73,87 @@ class Robot:
 
 
 
+  # def callback(self, data):
+  #   # setup timer and font
+  #   timer = int(time.time() - self.start)
+  #   font = cv2.FONT_HERSHEY_SIMPLEX
+
+  #   # convert img to cv2
+  #   # cv2_frame = self.bridge.imgmsg_to_cv2(data, "bgr8")
+
+  #   # ### COLOR DETECTION ###
+  #   # # define range of yellow color
+  #   # # yellowLower = (20, 100, 100)
+  #   # # yellowUpper = (32, 255, 255)
+
+  #   #   # yellowLower = (42, 42, 178)
+  #   #   # yellowUpper = (0, 0, 255)
+
+  #   # # define range of red color
+  #   # #redLower = (0, 0, 200)
+  #   # #redUpper = (0, 0, 255)
+
+
+
+  #   # hsv color-space convert
+  #   hsv = cv2.cvtColor(cv2_frame, cv2.COLOR_BGR2HSV)
+
+  #   # Threshold the HSV image to get only blue colors
+  #   maskYellow = cv2.inRange(hsv, yellowLower, yellowUpper)
+
+  #   # erosion and dilation for noise removal
+  #   maskYellow = cv2.erode(maskYellow, None, iterations=2)
+  #   maskYellow = cv2.dilate(maskYellow, None, iterations=2) 
+
+  #   # find contours of image (cv2.CHAIN_APPROX_SIMPLE is for memory saves)
+  #   #cnt_yellow = cv2.findContours(maskYellow.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
+  #   cnt_yellow = cv2.findContours(maskYellow.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
+  #   ### CIRCLE DETECTION ###    
+  #   contours_poly = []
+  #   centers = []
+  #   radius = []     
+    
+  #   # approximate contours to polygons + get bounding rects and circles
+  #   print(len(cnt_yellow))
+  #   for index, obj_cnt in enumerate(cnt_yellow):
+  #     contours_poly.append(cv2.approxPolyDP(obj_cnt, 0.009 * cv2.arcLength(obj_cnt, True), True))
+  #     aux1, aux2 = cv2.minEnclosingCircle(contours_poly[index])
+  #     centers.append(aux1)
+  #     radius.append(aux2)
+  #     ## if the camera find the sphere ##
+  #     if(len(contours_poly[index]) > 10):
+  #       # draw a circle in sphere and put a warning message
+  #       cv2.circle(cv2_frame, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 0, 255), 5) 
+  #       cv2.putText(cv2_frame, 'GO TO GOAL!', (20, 130), font, 2, (0, 0, 255), 5)
+  #       # print info on terminal
+  #       # print('CONTROL INFO :')
+  #       print('radius: ' + str(radius[0]))
+  #       print('center x position: ' + str(centers[0][0]))
+  #       # print('linear vel: ' + str(linear_vel))                
+  #       # print('angular vel: ' + str(angular_vel))
+  #       self.goal_move_base(centers[0][0], radius[0])
+  #       #print('##################################')
+  #       if self.controller_flag:
+  #         #import pdb; pdb.set_trace()
+  #         control_input = Twist()
+  #         print(radius[0])
+  #         control_input.linear.x =  self.xControl.calculate(1, 160, radius[0])
+  #         control_input.angular.z = self.yawControl.calculate(1, self.camera_info.width/2, centers[0][0])
+  #         self.velocity_ajustment.publish(control_input)
+  #     else:
+  #       self.controller_flag = False  
+  #       self.xControl.reset()
+  #       self.yawControl.reset()
+  #       self.error_distance = 999
+  #       self.counter = 0
+  #   # merge timer info to frame
+  #   # if self.error_distance < 20:
+  #   #   cv2.putText(cv2_frame, str(self.error_distance), (20, 60), font, 2, (50, 255, 50), 5) 
+  #   # cv2.putText(cv2_frame, str(self.counter), (10, 700), font, 2, (50, 255, 50), 6)
+
+  #   # convert img to ros and pub image in a topic
+  #   ros_frame = self.bridge.cv2_to_imgmsg(cv2_frame, "bgr8")
+  #   self.image_pub.publish(ros_frame)
   def callback(self, data):
     # setup timer and font
     timer = int(time.time() - self.start)
@@ -80,27 +161,26 @@ class Robot:
 
     # convert img to cv2
     cv2_frame = self.bridge.imgmsg_to_cv2(data, "bgr8")
-
-    ### COLOR DETECTION ###
-    # define range of yellow color
-    yellowLower = (20, 100, 100)
-    yellowUpper = (32, 255, 255)
-    # define range of red color
-    #redLower = (0, 0, 200)
-    #redUpper = (0, 0, 255)
-
+    
     # hsv color-space convert
     hsv = cv2.cvtColor(cv2_frame, cv2.COLOR_BGR2HSV)
 
-    # Threshold the HSV image to get only blue colors
-    maskYellow = cv2.inRange(hsv, yellowLower, yellowUpper)
+    lower_red = (0,120,70)
+    upper_red =(10,255,255)
+    mask1 = cv2.inRange(hsv, lower_red, upper_red)
+
+    lower_red = np.array([170,120,70])
+    upper_red = np.array([180,255,255])
+    mask2 = cv2.inRange(hsv,lower_red,upper_red)
+
+    mask = mask1+mask2
 
     # erosion and dilation for noise removal
-    maskYellow = cv2.erode(maskYellow, None, iterations=2)
-    maskYellow = cv2.dilate(maskYellow, None, iterations=2) 
+    mask = cv2.erode(mask, None, iterations=2)
+    mask = cv2.dilate(mask, None, iterations=2) 
 
     # find contours of image (cv2.CHAIN_APPROX_SIMPLE is for memory saves)
-    cnt_yellow = cv2.findContours(maskYellow.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
+    cnt_yellow = cv2.findContours(mask.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
     
     ### CIRCLE DETECTION ###    
     contours_poly = []
@@ -127,6 +207,7 @@ class Robot:
         self.goal_move_base(centers[0][0], radius[0])
         #print('##################################')
         if self.controller_flag:
+         
           control_input = Twist()
           control_input.linear.x =  self.xControl.calculate(1, 160, radius[0])
           control_input.angular.z = self.yawControl.calculate(1, self.camera_info.width/2, centers[0][0])
@@ -145,7 +226,6 @@ class Robot:
     # convert img to ros and pub image in a topic
     ros_frame = self.bridge.cv2_to_imgmsg(cv2_frame, "bgr8")
     self.image_pub.publish(ros_frame)
-
 
   def callback_camera_info(self, data):
     self.camera_info = data
