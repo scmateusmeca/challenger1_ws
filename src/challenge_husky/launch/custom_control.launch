@@ -9,7 +9,7 @@
        default="$(eval optenv('HUSKY_CONFIG_EXTRAS', find('husky_control') + '/config/empty.yaml'))"/>
 
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
-  <arg name="kinect_enabled" default="$(optenv HUSKY_KINECT_ENABLED false)"/>
+  <!-- <arg name="kinect_enabled" default="$(optenv HUSKY_KINECT_ENABLED false)"/> -->
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
   <include file="$(find multimaster_launch)/launch/multimaster_robot.launch" if="$(arg multimaster)">
@@ -22,7 +22,7 @@
   <!-- Load robot description -->
   <include file="$(find husky_description)/launch/description.launch" >
     <arg name="laser_enabled" default="$(arg laser_enabled)"/>
-    <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
+    <!-- <arg name="kinect_enabled" default="$(arg kinect_enabled)"/> -->
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
   </include>
 

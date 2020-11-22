@@ -123,6 +123,7 @@ gazebo_light_sensor_plugin_EXTERNAL_OBJECTS =
 /home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /opt/ros/melodic/lib/libgazebo_ros_vacuum_gripper.so
 /home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /opt/ros/melodic/lib/libnodeletlib.so
 /home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /opt/ros/melodic/lib/libbondcpp.so
+/home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /usr/lib/x86_64-linux-gnu/libuuid.so
 /home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /opt/ros/melodic/lib/liburdf.so
 /home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 /home/mateus/challenger1_ws/devel/lib/libgazebo_light_sensor_plugin.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

@@ -48,6 +48,7 @@ opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: 
 opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/exceptions.h
 opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/forwards.h
 opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/init.h
+opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/internal/condition_variable.h
 opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/macros.h
 opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/master.h
 opencv/CMakeFiles/gazebo_light_sensor_plugin.dir/src/light_sensor_plugin.cpp.o: /opt/ros/melodic/include/ros/message.h

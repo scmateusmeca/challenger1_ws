@@ -3,7 +3,7 @@
 
 <!-- Gazebo -->
   <arg name="laser_enabled" default="false"/>
-  <arg name="kinect_enabled" default="false"/>
+  <!-- <arg name="kinect_enabled" default="false"/> -->
   <arg name="urdf_extras" default="$(find challenge_husky)/urdf/attachments.urdf.xacro"/>
 
 <!-- Gazebo Final Map   -->
@@ -28,7 +28,7 @@
 <!-- Custom Spawn   -->
   <include file="$(find challenge_husky)/launch/custom_spawn_husky.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
-    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+    <!-- <arg name="kinect_enabled" value="$(arg kinect_enabled)"/> -->
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
     <arg name="x" default="-4.0"/>
     <arg name="y" default="-18.0"/>

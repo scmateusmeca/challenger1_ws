@@ -95,6 +95,7 @@ laserscan_to_pointcloud_node_EXTERNAL_OBJECTS =
 /home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /opt/ros/melodic/lib/libtf.so
 /home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /opt/ros/melodic/lib/libnodeletlib.so
 /home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /opt/ros/melodic/lib/libbondcpp.so
+/home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /usr/lib/x86_64-linux-gnu/libuuid.so
 /home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /opt/ros/melodic/lib/libclass_loader.so
 /home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /usr/lib/libPocoFoundation.so
 /home/mateus/challenger1_ws/devel/lib/pointcloud_to_laserscan/laserscan_to_pointcloud_node: /usr/lib/x86_64-linux-gnu/libdl.so

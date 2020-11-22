@@ -31,7 +31,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find cimatec_map)/model"/> -->
   
   <arg name="laser_enabled" default="false"/>
-  <arg name="kinect_enabled" default="false"/>
+  <!-- <arg name="kinect_enabled" default="false"/> -->
   <arg name="urdf_extras" default="$(find challenge_husky)/urdf/attachments.urdf.xacro"/>
   <arg name="config_extras" default="$(find challenge_husky)/config/custom_localization.yaml"/>
 
@@ -46,7 +46,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
-    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+    <!-- <arg name="kinect_enabled" value="$(arg kinect_enabled)"/> -->
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
     <!-- <arg name="config_extras" default="$(arg config_extras)"/> -->
   </include>

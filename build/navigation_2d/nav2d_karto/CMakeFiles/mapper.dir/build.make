@@ -199,6 +199,7 @@ mapper_EXTERNAL_OBJECTS =
 /home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: /usr/lib/x86_64-linux-gnu/libcolamd.so
 /home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: /usr/lib/x86_64-linux-gnu/libcamd.so
 /home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: /usr/lib/x86_64-linux-gnu/libccolamd.so
+/home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: /usr/local/lib/libmetis.so
 /home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
 /home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: /home/mateus/challenger1_ws/devel/lib/libOpenKarto.so
 /home/mateus/challenger1_ws/devel/lib/nav2d_karto/mapper: navigation_2d/nav2d_karto/CMakeFiles/mapper.dir/link.txt
